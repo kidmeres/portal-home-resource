@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>探索 ayx · 主题聚合与信息索引</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f3f9fc;
+      color: #1b2e35;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #0e4d5c 0%, #1d7a8f 70%, #2ba3b8 100%);
+      color: white;
+      padding: 5rem 0 4.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -2rem;
+      left: -3rem;
+      width: 220px;
+      height: 220px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .hero .sub {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 680px;
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+
+    .hero .meta-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    /* 网格卡片 */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.8rem;
+      margin: 3.5rem 0 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem 1.8rem;
+      box-shadow: 0 6px 18px rgba(0, 40, 50, 0.06);
+      transition: transform 0.2s, box-shadow 0.25s;
+      border: 1px solid #e0edf2;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 28px rgba(14, 77, 92, 0.10);
+      border-color: #b2dae3;
+    }
+
+    .card .icon {
+      font-size: 2.2rem;
+      margin-bottom: 0.6rem;
+      display: inline-block;
+      background: #dceef4;
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0d5b6b;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #0a3f4b;
+      margin: 1rem 0 0.4rem;
+    }
+
+    .card p {
+      color: #2c4c55;
+      font-size: 0.96rem;
+    }
+
+    .feature-highlight {
+      background: #e2f3f8;
+      border-radius: 28px;
+      padding: 2.5rem 2.8rem;
+      margin: 2.8rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .feature-highlight .text-block {
+      flex: 1 1 240px;
+    }
+
+    .feature-highlight .text-block h2 {
+      font-size: 1.5rem;
+      color: #06333e;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+
+    .feature-highlight .text-block p {
+      color: #1f4b57;
+      max-width: 480px;
+    }
+
+    .feature-highlight .stat {
+      display: flex;
+      gap: 2.2rem;
+      margin-top: 0.5rem;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-item .num {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #0b5264;
+    }
+
+    .stat-item .label {
+      font-size: 0.8rem;
+      color: #296c7c;
+      letter-spacing: 0.02em;
+    }
+
+    /* 说明区 / 内容块 */
+    .insight-section {
+      background: white;
+      border-radius: 28px;
+      padding: 2.6rem 2.8rem;
+      margin: 2.5rem 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      border: 1px solid #d7e8ee;
+    }
+
+    .insight-section h2 {
+      font-size: 1.5rem;
+      color: #073c48;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      border-left: 5px solid #1d9cb6;
+      padding-left: 1rem;
+    }
+
+    .insight-section p {
+      color: #1b3f4a;
+      margin-bottom: 1rem;
+    }
+
+    .faq-mini {
+      background: white;
+      border-radius: 28px;
+      padding: 2.2rem 2.8rem;
+      margin: 2.5rem 0;
+      border: 1px solid #d7e8ee;
+    }
+
+    .faq-mini h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #073c48;
+      margin-bottom: 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .faq-item {
+      margin-bottom: 1.4rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dashed #c1dbe3;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .faq-item .q {
+      font-weight: 600;
+      color: #084753;
+      margin-bottom: 0.25rem;
+    }
+
+    .faq-item .a {
+      color: #2c555f;
+      font-size: 0.95rem;
+    }
+
+    .footer-links {
+      padding: 2.8rem 0 4rem;
+      border-top: 1px solid #cfe2e9;
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-links .copy {
+      color: #3b6d79;
+      font-size: 0.9rem;
+    }
+
+    .footer-links .nav {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #185c6b;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border 0.15s;
+    }
+
+    .footer-links a:hover {
+      border-bottom-color: #185c6b;
+    }
+
+    .inline-link {
+      color: #136f82;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid #6bb5c7;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .inline-link:hover {
+      color: #084753;
+      border-bottom-color: #084753;
+    }
+
+    /* 移动端 */
+    @media (max-width: 640px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .feature-highlight {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.8rem;
+      }
+      .feature-highlight .stat {
+        margin-top: 1.2rem;
+        gap: 1.5rem;
+      }
+      .grid-cards {
+        gap: 1rem;
+      }
+      .insight-section,
+      .faq-mini {
+        padding: 1.5rem;
+      }
+      .footer-links {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="container">
+      <h1>主题索引 · 信息聚合</h1>
+      <div class="sub">围绕核心关键词 <strong>ayx</strong> 构建的内容框架，提供分类化的参考与快速浏览。</div>
+      <div class="meta-badge">持续更新 · 结构化梳理</div>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- 优势卡片网格 -->
+    <div class="grid-cards">
+      <div class="card">
+        <div class="icon">📁</div>
+        <h3>模块化结构</h3>
+        <p>按专题分类组织，减少信息冗余。每个板块定位清晰，便于按需查阅。</p>
+      </div>
+      <div class="card">
+        <div class="icon">🔗</div>
+        <h3>关联整合</h3>
+        <p>关键条目之间建立交叉引用，形成网状索引而非孤立页面，提升查找效率。</p>
+      </div>
+      <div class="card">
+        <div class="icon">🧩</div>
+        <h3>轻量展示</h3>
+        <p>卡片式布局配合低干扰配色，强调内容本身。蓝绿色调适中，适配长时间阅读。</p>
+      </div>
+      <div class="card">
+        <div class="icon">📱</div>
+        <h3>响应式优先</h3>
+        <p>从桌面到移动设备均保持可读性与操作舒适度，网格与间距自动适配。</p>
+      </div>
+    </div>
+
+    <!-- 特色/优势区 混合 -->
+    <div class="feature-highlight">
+      <div class="text-block">
+        <h2>简洁但非浅薄</h2>
+        <p>每个条目经过筛选与精简，保留实质信息。同时支持通过 <a href="https://portal-home-ayx.com" class="inline-link">ayx</a> 直达更多延伸内容。</p>
+      </div>
+      <div class="stat">
+        <div class="stat-item">
+          <div class="num">4</div>
+          <div class="label">主题板块</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">20+</div>
+          <div class="label">索引节点</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 说明区：切入角度 -->
+    <div class="insight-section">
+      <h2>从关键词到内容脉络</h2>
+      <p>一个标签背后往往连接着一组概念群。以 <strong>ayx</strong> 为锚点，我们尝试梳理其相关的主题领域、常用场景以及信息路径。不夸大，不堆砌，只呈现经过核对的条目。</p>
+      <p>本页面作为索引首页，侧重展示整体结构。用户可通过站内链接跳转到子页面获取更详细的分类说明或实用参考。内容方向覆盖常见应用、背景解析与常见疑问。</p>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+      <h2>❓ 常见疑问摘要</h2>
+      <div class="faq-item">
+        <div class="q">Q: 这个页面提供什么信息？</div>
+        <div class="a">围绕关键词 <strong>ayx</strong> 聚合的结构化索引，包含主题分类、简要说明以及指向更完整内容的链接。</div>
+      </div>
+      <div class="faq-item">
+        <div class="q">Q: 内容是否保持更新？</div>
+        <div class="a">索引会定期校对并补充，但具体条目与时效性说明请以各子页面或引用的原始来源为准。</div>
+      </div>
+      <div class="faq-item">
+        <div class="q">Q: 如何获取更详细的资料？</div>
+        <div class="a">页面中的链接（例如 <a href="https://portal-home-ayx.com" class="inline-link">ayx</a>）可直接跳转至对应板块，提供更完整的背景与条目列表。</div>
+      </div>
+    </div>
+
+    <!-- 底部链接 -->
+    <footer class="footer-links">
+      <div class="copy">© 2025 · ayx 信息索引</div>
+      <div class="nav">
+        <a href="https://portal-home-ayx.com">ayx</a>
+        <a href="#">主题总览</a>
+        <a href="#">分类目录</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
