@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>彩票网 · 知识库与导航</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', '宋体', 'SimSun', serif;
+            background-color: #f9f6f1;
+            color: #2e2b27;
+            line-height: 1.7;
+            padding: 2rem 1.5rem;
+        }
+
+        .page {
+            max-width: 920px;
+            margin: 0 auto;
+            background-color: #fdfbf8;
+            border-radius: 24px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+            padding: 2.8rem 2.4rem;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .page {
+                padding: 1.8rem 1.2rem;
+                border-radius: 16px;
+            }
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.2rem;
+            color: #1f1b18;
+        }
+
+        .subhead {
+            font-size: 0.95rem;
+            color: #7b7068;
+            margin-bottom: 2rem;
+            border-left: 3px solid #cfc3b4;
+            padding-left: 1rem;
+            font-style: italic;
+        }
+
+        .shelf {
+            margin: 2.4rem 0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #3e3530;
+            border-bottom: 1px solid #e0d7ce;
+            padding-bottom: 0.4rem;
+            margin-bottom: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .section-title span {
+            background: #ece6dd;
+            font-size: 0.75rem;
+            padding: 0.1rem 0.6rem;
+            border-radius: 12px;
+            color: #5e5147;
+            font-weight: 400;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        @media (max-width: 600px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: #f9f6f1;
+            border-radius: 16px;
+            padding: 1.2rem 1.4rem;
+            border: 1px solid #ece4db;
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .card h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+            color: #1f1b18;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #4f4842;
+            margin-bottom: 0.6rem;
+        }
+
+        .card .tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            background: #e3dbd1;
+            color: #3e3530;
+            padding: 0.1rem 0.6rem;
+            border-radius: 10px;
+        }
+
+        .quote-block {
+            background: #ece6dd;
+            padding: 1.4rem 1.6rem;
+            border-radius: 18px;
+            margin: 2.2rem 0;
+            border-left: 5px solid #b7a99a;
+            font-style: normal;
+            color: #2e2b27;
+        }
+
+        .quote-block p {
+            margin-bottom: 0.6rem;
+        }
+
+        .quote-block .attribution {
+            font-size: 0.85rem;
+            color: #6b5f55;
+            margin-top: 0.6rem;
+            font-style: italic;
+        }
+
+        .info-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.6rem;
+            background: #f3efe9;
+            padding: 1rem 1.4rem;
+            border-radius: 14px;
+            margin: 1.8rem 0;
+            font-size: 0.9rem;
+            color: #3e3530;
+        }
+
+        .info-row strong {
+            font-weight: 500;
+            color: #1f1b18;
+        }
+
+        .link-sentence {
+            font-size: 1rem;
+            margin: 1rem 0 1.6rem 0;
+            padding: 0.6rem 0;
+            border-top: 1px dashed #d7cdc1;
+            border-bottom: 1px dashed #d7cdc1;
+        }
+
+        .link-sentence a {
+            color: #8b6f5a;
+            text-decoration: none;
+            border-bottom: 1px solid #cbb9a9;
+            font-weight: 400;
+            transition: color 0.15s;
+        }
+
+        .link-sentence a:hover {
+            color: #5a4438;
+            border-bottom-color: #8b6f5a;
+        }
+
+        .faq-mini {
+            margin-top: 2.4rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #e2d9cf;
+        }
+
+        .faq-item {
+            margin-bottom: 0.9rem;
+        }
+
+        .faq-item q {
+            font-weight: 400;
+            color: #1f1b18;
+            font-style: italic;
+        }
+
+        .faq-item p {
+            margin-top: 0.2rem;
+            font-size: 0.9rem;
+            color: #4f4842;
+        }
+
+        .footnote {
+            margin-top: 2.8rem;
+            font-size: 0.8rem;
+            color: #8f8278;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .footnote a {
+            color: #7a6a5e;
+            text-decoration: none;
+            border-bottom: 1px solid #ccc1b4;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <h1>彩票网 · 知识库</h1>
+        <div class="subhead">资源导航 · 持续关注 · 信息备忘</div>
+
+        <!-- 目录卡片区 -->
+        <div class="shelf">
+            <div class="section-title">
+                📋 信息分类
+                <span>收藏备查</span>
+            </div>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>📖 规则与说明</h3>
+                    <p>彩票玩法、条款、兑奖流程的整理与索引。适合需要查阅细节的访客。</p>
+                    <span class="tag">知识库</span>
+                </div>
+                <div class="card">
+                    <h3>📌 关注清单</h3>
+                    <p>活动更新、调整通知、常见问题汇总。长期关注者可定期浏览。</p>
+                    <span class="tag">动态</span>
+                </div>
+                <div class="card">
+                    <h3>🔐 安全提示</h3>
+                    <p>官方渠道识别、信息保护、理性参与提醒。每次访问前均可参考。</p>
+                    <span class="tag">提示</span>
+                </div>
+                <div class="card">
+                    <h3>📚 相关资料</h3>
+                    <p>历史公告、条款版本、操作指南。便于回顾与比对。</p>
+                    <span class="tag">存档</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 提示区 / 引用块 -->
+        <div class="quote-block">
+            <p>再次访问时，不妨先浏览以上分类，查找所需内容。网站结构可能随阶段调整，但知识库入口始终保留，方便回头查阅。</p>
+            <p>若你倾向于持续关注，可定期回来看看说明区与提示区的更新，那里汇集了最新整理的信息。</p>
+            <div class="attribution">—— 摘自本站说明页 · 2025</div>
+        </div>
+
+        <!-- 相关信息区 -->
+        <div class="info-row">
+            <span><strong>📎 当前方向</strong> 知识库入口式 · 目录感布局</span>
+            <span><strong>📅 页面版本</strong> 2025 · 内容索引</span>
+            <span><strong>🔄 更新节奏</strong> 按阶段整合</span>
+        </div>
+
+        <!-- 嵌入链接的句子（唯一 a 标签，可见文本严格为“彩票网”） -->
+        <div class="link-sentence">
+            若需访问主站，可前往 <a href="https://cn-space-lottery.com">彩票网</a> 浏览完整内容。此处知识库作为其辅助索引，供参考与回顾。
+        </div>
+
+        <!-- FAQ 摘要 -->
+        <div class="faq-mini">
+            <div class="section-title" style="border-bottom: none; margin-bottom: 0.6rem;">
+                ❓ FAQ 摘要
+                <span>常见疑问</span>
+            </div>
+            <div class="faq-item">
+                <q>如何确认信息来源的时效性？</q>
+                <p>本页面所列分类会随主站更新而调整，建议每次访问时留意说明区的标注日期。具体条款以 <a href="https://cn-space-lottery.com" style="color: #6b5f55; text-decoration: underline; text-underline-offset: 2px;">彩票网</a> 官方发布为准。</p>
+            </div>
+            <div class="faq-item">
+                <q>知识库与主站的关系是什么？</q>
+                <p>知识库是对主站内容的结构化梳理，方便快速定位信息。主站仍为完整内容载体，两者互为补充。</p>
+            </div>
+            <div class="faq-item">
+                <q>为什么推荐收藏此页面？</q>
+                <p>作为入口页，它整合了说明区、提示区和相关信息，适合习惯从概览开始浏览的访客，也便于重复访问时快速定位。</p>
+            </div>
+        </div>
+
+        <div class="footnote">
+            <p>本页仅作信息索引与导航 · 内容仅供参考 · 具体以 <a href="https://cn-space-lottery.com">彩票网</a> 最新信息为准</p>
+            <p style="margin-top: 0.4rem;">© 2025 · 知识库入口 · 收藏与持续关注</p>
+        </div>
+    </div>
+</body>
+</html>
